@@ -1,0 +1,15 @@
+
+2023-06-13	11:17:42	c32bbe3d-ce8d-442d-89ba-77ed9028ab23	Error	Not allowed by CORS !!
+2023-06-13	17:12:31	499d30b9-3824-4542-b9ff-68d77eb88125	Error	ENOENT: no such file or directory, stat '/home/henriqu3/Documentos/programas/Javascript/Node/Examples/Routing/routes/views/index.html'
+2023-06-13	18:48:58	d4634101-87aa-436a-8c67-8568cf5c2c03	Error	Cannot set headers after they are sent to the client
+2023-06-13	18:49:33	cf021b55-98e9-4bdd-971a-6e7c0eb81e2f	Error	Cannot set headers after they are sent to the client
+2023-06-13	18:55:39	2a42f4da-ab93-41dc-a9d9-ee116ad608c5	Error	Cannot set headers after they are sent to the client
+2023-06-14	16:54:45	50946a49-5046-4a4d-b26c-4eea16bb3290	Error	Cannot set headers after they are sent to the client
+2023-06-27	15:34:16	d67b2f8b-dc11-46a9-bdcb-4000343b5f0b	Error	Cannot set headers after they are sent to the client
+2023-06-27	15:34:25	9cc26074-12e5-4545-9954-6c4e67e7f1c2	Error	Cannot set headers after they are sent to the client
+2023-06-27	17:48:20	74573fa5-eac6-4057-a83f-d51a18d550e2	Error	Cannot set headers after they are sent to the client
+2023-06-27	17:48:24	7f70adc8-41c8-455f-8f86-54f06d35f57b	Error	Cannot set headers after they are sent to the client
+2023-06-27	17:50:49	441250bf-0ea1-4dbf-b0d0-deab80d2845f	ReferenceError	user is not defined
+2023-06-27	18:06:00	1db9a121-a19e-4754-ad97-a8803ec2dd5e	Error	Cannot set headers after they are sent to the client
+2023-06-27	18:07:46	f7af4f63-7f2f-440a-ad01-d2ba4f98c8f1	Error	Cannot set headers after they are sent to the client
+2023-06-27	18:15:30	6b52d51b-16b1-4f56-871b-a817ab1a23e7	Error	Cannot set headers after they are sent to the client

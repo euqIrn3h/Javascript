@@ -1,0 +1,9 @@
+.navbar-nav {
+    flex-direction: column;
+}
+
+.navbar{
+    margin: 2px;
+    border: transparent 1px;
+    border-radius: 10px;
+}

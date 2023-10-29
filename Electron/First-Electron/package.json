@@ -1,0 +1,25 @@
+{
+  "name": "first-electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc && cp -r src/* build/",
+    "start": "npm run compile && electron .",
+    "electron": "electron"
+  },
+  "author": "HenrIqu3",
+  "license": "ISC",
+  "dependencies": {
+    "copyfiles": "^2.4.1",
+    "custom-electron-titlebar": "^4.2.7",
+    "electron": "^27.0.1",
+    "electron-reload": "^2.0.0-alpha.1",
+    "electron-titlebar": "^0.0.3",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.6.4"
+  }
+}

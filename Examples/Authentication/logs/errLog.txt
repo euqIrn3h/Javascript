@@ -1,0 +1,7 @@
+
+2023-06-13	11:17:42	c32bbe3d-ce8d-442d-89ba-77ed9028ab23	Error	Not allowed by CORS !!
+2023-06-13	17:12:31	499d30b9-3824-4542-b9ff-68d77eb88125	Error	ENOENT: no such file or directory, stat '/home/henriqu3/Documentos/programas/Javascript/Node/Examples/Routing/routes/views/index.html'
+2023-06-13	18:48:58	d4634101-87aa-436a-8c67-8568cf5c2c03	Error	Cannot set headers after they are sent to the client
+2023-06-13	18:49:33	cf021b55-98e9-4bdd-971a-6e7c0eb81e2f	Error	Cannot set headers after they are sent to the client
+2023-06-13	18:55:39	2a42f4da-ab93-41dc-a9d9-ee116ad608c5	Error	Cannot set headers after they are sent to the client
+2023-06-14	16:54:45	50946a49-5046-4a4d-b26c-4eea16bb3290	Error	Cannot set headers after they are sent to the client
