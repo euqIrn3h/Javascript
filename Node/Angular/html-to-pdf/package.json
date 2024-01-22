@@ -1,16 +1,12 @@
 {
-  "name": "db-connect",
+  "name": "html-to-pdf",
   "version": "0.0.0",
-  "main": "electron-build/index.js",
   "scripts": {
     "ng": "ng",
+    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "compile": "tsc electron-src/*.ts && cp -r electron-src/*.js electron-build/ && cp -r electron-src/database/*.js electron-build/database/",
-    "start": "npm run compile && electron .",
-    "generate-migration": "typeorm-ts-node-commonjs -d electron-src/database/data-source.ts migration:generate electron-src/database/migrations/default",
-    "run-migration": "typeorm-ts-node-commonjs -d electron-src/database/data-source.ts migration:run"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -22,22 +18,20 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
-    "custom-electron-titlebar": "^4.2.7",
-    "electron": "^27.0.2",
-    "reflect-metadata": "^0.1.13",
+    "dom-to-image": "^2.6.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
+    "moment": "^2.29.4",
     "rxjs": "~7.8.0",
-    "sqlite3": "^5.1.6",
-    "ts-node-dev": "^2.0.0",
     "tslib": "^2.3.0",
-    "typeorm": "^0.3.17",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.4",
     "@angular/cli": "~15.2.4",
     "@angular/compiler-cli": "^15.2.0",
+    "@types/dom-to-image": "^2.6.7",
     "@types/jasmine": "~4.3.0",
-    "@types/node": "^20.8.9",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
