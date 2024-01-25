@@ -1,0 +1,31 @@
+<div class="d-flex flex-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm fixed-top">
+  <h5 class="btn-link text-decoration-none fs-4 text-dark fw-bold">AngularAuth</h5>
+  <nav class="d-flex flex-row ms-auto">
+    <a  class="btn btn-outline-secondary mx-1" routerLinkActive="active" routerLink="/log-in" >Sign in</a>
+    <a class="btn btn-outline-primary mx-1 " routerLinkActive="active" routerLinkActive="active" routerLink="/sign-up" >Sign up</a>
+  </nav>
+</div>
+
+<div class="d-flex flex-column  justify-content-center align-items-center" id="sing-up">
+    <form class="form-signin" [formGroup]="signupForm" (ngSubmit)="registerUser()" >
+      <h3 class="my-3 fw-bold text-center">Please sign up</h3>
+      <div class="form-group my-2">
+        <label class="fw-bold">Username</label>
+        <input type="text" class="form-control" formControlName="username" placeholder="Enter username" required/>
+      </div>
+      <div class="form-group my-2">
+        <label class="fw-bold" >Password</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="Password" required />
+      </div>
+      <div class="form-group my-2">
+        <label class="fw-bold" >Role</label>
+        <select class="form-control" formControlName="role">
+          <option [ngValue]="null" disabled>Choose your role</option>
+          <option *ngFor="let role of roles" [ngValue]="role">
+            {{role}}
+          </option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-block btn-primary">Sign up</button>
+    </form>
+  </div>
