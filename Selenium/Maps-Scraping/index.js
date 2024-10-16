@@ -1,4 +1,5 @@
 const {By,Key,Builder} = require("selenium-webdriver");
+const X_PATH = require('./xpaths');
 require("chromedriver");
 
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
@@ -12,7 +13,7 @@ class Enterprise{
 
 async function example(){
  
-    var searchString = "Empresa Teste";
+    var searchString = "Farmacia Juiz de fora";
 
     //To wait for browser to build and launch properly
     let driver = await new Builder().forBrowser("chrome").build();
@@ -28,28 +29,46 @@ async function example(){
 
     let elements;
     let enterprises = [];
+    let errs = [];
+    let i=0;
 
-    elements = await driver.findElements(By.xpath("//a[contains(@class, 'hfpxzc')]"));
-    for(let element of elements){
-        await element.click();
-        let card = await driver.findElement(By.xpath("//div[contains(@class, 'm6QErb DxyBCb kA9KIf dS8AEf XiKgde')]"));
+    //Scrolar até encontrar a quantidade desejada de empresas
+    do{ 
+        elements = await driver.findElements(By.xpath("//a[contains(@class, 'hfpxzc')]"));
+        console.log("Elementos encontrados: "+ elements.length);
+        console.log("N scroll: " +i);
+
+        //Div com empresas no maps para poder scrolar
+        let feed = await driver.findElement(By.xpath("//div[contains(@class, 'm6QErb DxyBCb kA9KIf dS8AEf XiKgde ecceSd')]"));
+        await driver.actions().scroll(0, -50, 0, 1000, feed).perform();
+
         await sleep(1000);
+        i++;
+    }while(elements.length < 15 && i < 100);
+
+    //Preencher array de enmpresas
+    for(let element of elements){
         try{
+            await element.click();
+            let card = await driver.findElement(By.xpath("//div[contains(@class, 'm6QErb DxyBCb kA9KIf dS8AEf XiKgde')]"));
+            await sleep(1000);
             let newEnterprise = new Enterprise();
-            await card.findElement(By.xpath("//h1[contains(@class, 'DUwDvf lfPIob')]")).getText().then( name => newEnterprise.name = name);
-            await card.findElement(By.xpath("//h1[contains(@class, 'DUwDvf lfPIob')]")).getText().then( name => newEnterprise.name = name);
-            console.log(newEnterprise);
+            await card.findElement(By.xpath(X_PATH.ENTERPRISE_NAME)).getText().then( name => newEnterprise.name = name);
+            await card.findElement(By.xpath(X_PATH.ENTERPRISE_ADDRESS)).getText().then( address => newEnterprise.address = address);
+            await card.findElement(By.xpath(X_PATH.ENTERPRISE_PHONE)).getText().then( phone => newEnterprise.phone = phone);
+            await card.findElement(By.xpath(X_PATH.ENTERPRISE_WEBSITE)).getAttribute('href').then( website => { website ? newEnterprise.website = website : "Sem website" });
+            enterprises.push(newEnterprise);
         }catch(e){
-            console.log(card);
+            errs.push(e);
         }
     }
 
     enterprises.forEach(enterprise => console.log(enterprise));
-
+    console.log("Erros: "+ errs.length);
 
     
     //It is always a safe practice to quit the browser after execution
-    await driver.quit();
+    //await driver.quit();
 
 }
 
