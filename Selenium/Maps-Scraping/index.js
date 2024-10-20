@@ -1,4 +1,5 @@
-const {By,Key,Builder} = require("selenium-webdriver");
+const {By, Builder} = require("selenium-webdriver");
+const fs = require('node:fs');
 const X_PATH = require('./xpaths');
 require("chromedriver");
 
@@ -11,7 +12,9 @@ class Enterprise{
     website;
 }
 
-async function example(){
+getEnterprisesCsv();
+
+async function getEnterprisesCsv(){
  
     var searchString = "Farmacia Juiz de fora";
 
@@ -34,23 +37,23 @@ async function example(){
 
     //Scrolar até encontrar a quantidade desejada de empresas
     do{ 
-        elements = await driver.findElements(By.xpath("//a[contains(@class, 'hfpxzc')]"));
+        elements = await driver.findElements(By.xpath(X_PATH.ENTERPRISE));
         console.log("Elementos encontrados: "+ elements.length);
         console.log("N scroll: " +i);
 
         //Div com empresas no maps para poder scrolar
-        let feed = await driver.findElement(By.xpath("//div[contains(@class, 'm6QErb DxyBCb kA9KIf dS8AEf XiKgde ecceSd')]"));
+        let feed = await driver.findElement(By.xpath(X_PATH.ENTERPRISES_FEED));
         await driver.actions().scroll(0, -50, 0, 1000, feed).perform();
 
         await sleep(1000);
         i++;
-    }while(elements.length < 15 && i < 100);
+    }while(elements.length < 6 && i < 100);
 
     //Preencher array de enmpresas
     for(let element of elements){
         try{
             await element.click();
-            let card = await driver.findElement(By.xpath("//div[contains(@class, 'm6QErb DxyBCb kA9KIf dS8AEf XiKgde')]"));
+            let card = await driver.findElement(By.xpath(X_PATH.ENTERPRISE_CARD));
             await sleep(1000);
             let newEnterprise = new Enterprise();
             await card.findElement(By.xpath(X_PATH.ENTERPRISE_NAME)).getText().then( name => newEnterprise.name = name);
@@ -63,13 +66,45 @@ async function example(){
         }
     }
 
-    enterprises.forEach(enterprise => console.log(enterprise));
     console.log("Erros: "+ errs.length);
 
-    
     //It is always a safe practice to quit the browser after execution
-    //await driver.quit();
+    await driver.quit();
 
+    let csv = await jsonToCsv(enterprises);
+    writeFile(csv, 'outpu.csv');
 }
 
-example()
+async function jsonToCsv(jsonData) {
+    let csv = '';
+    // Cria o cabeçalho do CSV com as chaves do primeiro objeto do array JSON
+    let header = Object.keys(jsonData[0]).join(',');
+    csv += header + '\n';
+
+    // Itera sobre cada objeto do array JSON
+    jsonData.forEach(obj => {
+        // Itera sobre cada chave do objeto
+        Object.keys(obj).forEach(key => {
+            // Adiciona o valor da chave ao CSV, com aspas duplas caso haja vírgulas ou aspas no valor
+            let value = obj[key];
+            if (typeof value === 'string') {
+                value = value.replace(/"/g, '""'); // Duplica as aspas duplas para escapá-las
+                if (value.indexOf(',') !== -1 || value.indexOf('"') !== -1) {
+                    value = '"' + value + '"';
+                }
+            }
+            csv += value + ',';
+        });
+        csv += '\n';
+    });
+
+    return csv;
+}
+
+async function writeFile(content, filename){
+    try{
+        fs.writeFileSync(__dirname + '/output/'+ filename, content);
+    }catch(e){
+        console.log("Error on create file!\n", e);
+    }
+}
