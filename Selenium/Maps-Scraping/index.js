@@ -1,6 +1,6 @@
 const {By, Builder} = require("selenium-webdriver");
-const fs = require('node:fs');
 const X_PATH = require('./xpaths');
+const file_utils = require('./utils/file');
 require("chromedriver");
 
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
@@ -71,40 +71,8 @@ async function getEnterprisesCsv(){
     //It is always a safe practice to quit the browser after execution
     await driver.quit();
 
-    let csv = await jsonToCsv(enterprises);
-    writeFile(csv, 'outpu.csv');
+    let csv = await file_utils.jsonToCsv(enterprises);
+    file_utils.writeFile(csv, 'outpu.csv');
 }
 
-async function jsonToCsv(jsonData) {
-    let csv = '';
-    // Cria o cabeçalho do CSV com as chaves do primeiro objeto do array JSON
-    let header = Object.keys(jsonData[0]).join(',');
-    csv += header + '\n';
 
-    // Itera sobre cada objeto do array JSON
-    jsonData.forEach(obj => {
-        // Itera sobre cada chave do objeto
-        Object.keys(obj).forEach(key => {
-            // Adiciona o valor da chave ao CSV, com aspas duplas caso haja vírgulas ou aspas no valor
-            let value = obj[key];
-            if (typeof value === 'string') {
-                value = value.replace(/"/g, '""'); // Duplica as aspas duplas para escapá-las
-                if (value.indexOf(',') !== -1 || value.indexOf('"') !== -1) {
-                    value = '"' + value + '"';
-                }
-            }
-            csv += value + ',';
-        });
-        csv += '\n';
-    });
-
-    return csv;
-}
-
-async function writeFile(content, filename){
-    try{
-        fs.writeFileSync(__dirname + '/output/'+ filename, content);
-    }catch(e){
-        console.log("Error on create file!\n", e);
-    }
-}
