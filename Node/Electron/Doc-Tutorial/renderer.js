@@ -1,4 +1,3 @@
-const file_utils = window.ipc.ipcRenderer.invoke('fileUtils');
 let path = '';
 let csv = '';
 
@@ -16,7 +15,7 @@ document.getElementById('search').addEventListener('click', async () => {
         csv = await window.ipc.ipcRenderer.invoke('getEnterprisesCsv');
         console.log(csv);
         
-        file_utils.writeFile(csv, path + 'output.csv');
+        window.ipc.ipcRenderer.invoke('fileUtils',{csv: csv, path: path + '/output.csv'});
     } catch (error) {
         console.error('Erro ao acionar o scrapper:', error);
     }

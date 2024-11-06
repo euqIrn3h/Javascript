@@ -1,9 +1,10 @@
 
 const fs = require('node:fs');
 
-async function writeFile(content, filename){
+async function writeFile(content, path){
     try{
-        fs.writeFileSync(__dirname + '/../output/'+ filename, content);
+        fs.writeFileSync(path, content);
+        console.log(`File created at ${path}.`);
     }catch(e){
         console.log("Error on create file!\n", e);
     }

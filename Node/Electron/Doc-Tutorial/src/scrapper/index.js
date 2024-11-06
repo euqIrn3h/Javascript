@@ -36,8 +36,6 @@ async function getEnterprisesCsv(){
     //Scrolar até encontrar a quantidade desejada de empresas
     do{ 
         elements = await driver.findElements(By.xpath(X_PATH.ENTERPRISE));
-        console.log("Elementos encontrados: "+ elements.length);
-        console.log("N scroll: " +i);
 
         //Div com empresas no maps para poder scrolar
         let feed = await driver.findElement(By.xpath(X_PATH.ENTERPRISES_FEED));
@@ -64,7 +62,7 @@ async function getEnterprisesCsv(){
         }
     }
 
-    console.log("Erros: "+ errs.length);
+    //console.log("Erros: "+ errs.length);
 
     //It is always a safe practice to quit the browser after execution
     await driver.quit();

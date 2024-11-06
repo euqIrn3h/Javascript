@@ -43,13 +43,13 @@ ipcMain.handle('chooseDirectory', async () => {
     const resultado = await dialog.showOpenDialog(win, {
         properties: ['openDirectory'] // Apenas selecionar diretórios
     });
-    return resultado.filePaths[0]; // Retorna o caminho do diretório selecionado
+    return resultado.filePaths[0]; 
 });
 
 ipcMain.handle('getEnterprisesCsv', async () => {
-    return getEnterprisesCsv(); // Retorna o caminho do diretório selecionado
+    return getEnterprisesCsv(); 
 });
 
-ipcMain.handle('fileUtils', async () => {
-    return file_utils; // Retorna o caminho do diretório selecionado
+ipcMain.handle('fileUtils', async (event, args) => {
+    file_utils.writeFile(args.csv, args.path); 
 });
