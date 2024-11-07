@@ -11,15 +11,29 @@
 </head>
 <body class="container main-css-max-height">
   <main class="w-100 h-100 d-flex flex-column m-2">
-    <h1 class="w-100 border border-1 p-1">Buscador Maps</h1>
-    <div class="w-100 d-flex align-items-center p-1">
-      <div>
-        <button class="btn btn-primary" id="btn-chooseDir">Escolher Diretório</button> :
-      </div>
-      <div id="chosenPath"></div>
+    <div class="w-100 d-flex align-items-center justify-content-around border border-1 rounded-3 p-2" style="background-color: #cbcb94;">
+      <div class="d-flex flex-column">
+        <h4><strong>Bem vindo ao</strong></h4>
+        <h1 class="font-title multicolor-text"><strong>BirdMiner</strong></h1>
+      </div> 
+      <img class="img" src="./assets/bird.webp">
     </div>
-    <div>
-      <button class="btn btn-success" id="search">Buscar</button>
+    <div class="w-100 d-flex align-items-center p-1 m-2">
+      <button class="btn btn-primary" id="btn-chooseDir">Escolher pasta :</button>
+      <div class="d-flex align-items-center" id="chosenPath"></div>
+    </div>
+    <div class="w-100 d-flex flex-column m-2 p-2 border border-2 rounded-3">
+      <div class="d-flex flex-row my-2">
+        <label class="input-group-text w-25 mx-1">Cidade da busca :</label>
+        <input class="form-control w-100" type="text" id="city" placeholder="Cidade">
+      </div>
+      <div class="d-flex flex-row my-2">
+        <label class="input-group-text w-25 mx-1">Negócio :</label>
+        <input class="form-control w-100" type="text" id="business" placeholder="Negócio">
+      </div>
+      <div class="d-flex flex-row align-items-center justify-content-center my-4">
+        <button class="btn btn-success w-50" id="search">Buscar</button>
+      </div>
     </div>
   </main>
 </body>

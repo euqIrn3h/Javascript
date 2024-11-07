@@ -4,7 +4,7 @@ let csv = '';
 document.getElementById('btn-chooseDir').addEventListener('click', async () => {
     try {
         path = await window.ipc.ipcRenderer.invoke('chooseDirectory');
-        document.getElementById('chosenPath').innerHTML = `<p class="border border-1 m-1 p-1">${path}</p>`;
+        document.getElementById('chosenPath').innerHTML = `<p class="p-2 m-2 border border-2 rounded-3"> ${path}</p>`;
     } catch (error) {
         console.error('Erro ao selecionar diretório:', error);
     }

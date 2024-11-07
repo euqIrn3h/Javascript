@@ -2,3 +2,27 @@
     height: 100vh;
     font-family: 'Times New Roman', Times, serif;
 }
+
+img{
+    width: 100px;
+    height: 100px;
+    transform: scaleX(-1);
+}
+
+.font-title{
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+}
+
+.multicolor-text {
+    text-align: center;
+    font-size: 50px;
+    background: linear-gradient(to left,
+            violet,
+            indigo,
+            blue,
+            green,
+            orange,
+            red);
+    -webkit-background-clip: text;
+    color: transparent;
+}
