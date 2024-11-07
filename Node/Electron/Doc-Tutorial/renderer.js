@@ -12,8 +12,12 @@ document.getElementById('btn-chooseDir').addEventListener('click', async () => {
 
 document.getElementById('search').addEventListener('click', async () => {
     try {
-        csv = await window.ipc.ipcRenderer.invoke('getEnterprisesCsv');
-        console.log(csv);
+        let city = document.getElementById('city').value;
+        let business = document.getElementById('business').value;
+        let maxRecords = document.getElementById('maxRecords').value;
+        let maxIterations = document.getElementById('maxIterations').value;
+        
+        csv = await window.ipc.ipcRenderer.invoke('getEnterprisesCsv', {city:city, business: business, maxRecords: maxRecords, maxIterations: maxIterations});
         
         window.ipc.ipcRenderer.invoke('fileUtils',{csv: csv, path: path + '/output.csv'});
     } catch (error) {

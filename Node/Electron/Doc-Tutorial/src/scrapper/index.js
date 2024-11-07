@@ -12,9 +12,9 @@ class Enterprise{
     website;
 }
 
-async function getEnterprisesCsv(){
+async function getEnterprisesCsv(city, business, maxRecords, maxIterations){
  
-    var searchString = "Farmacia Juiz de fora";
+    var searchString = city + " " + business;
 
     //To wait for browser to build and launch properly
     let driver = await new Builder().forBrowser("chrome").build();
@@ -43,7 +43,7 @@ async function getEnterprisesCsv(){
 
         await sleep(1000);
         i++;
-    }while(elements.length < 6 && i < 100);
+    }while(elements.length < maxRecords && i < maxIterations);
 
     //Preencher array de enmpresas
     for(let element of elements){

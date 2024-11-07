@@ -46,8 +46,8 @@ ipcMain.handle('chooseDirectory', async () => {
     return resultado.filePaths[0]; 
 });
 
-ipcMain.handle('getEnterprisesCsv', async () => {
-    return getEnterprisesCsv(); 
+ipcMain.handle('getEnterprisesCsv', async (event, args) => {
+    return getEnterprisesCsv(args.city, args.business, args.maxRecords, args.maxIterations); 
 });
 
 ipcMain.handle('fileUtils', async (event, args) => {

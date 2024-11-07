@@ -24,12 +24,20 @@
     </div>
     <div class="w-100 d-flex flex-column m-2 p-2 border border-2 rounded-3">
       <div class="d-flex flex-row my-2">
-        <label class="input-group-text w-25 mx-1">Cidade da busca :</label>
+        <label class="input-group-text w-50 mx-1">Cidade da busca :</label>
         <input class="form-control w-100" type="text" id="city" placeholder="Cidade">
       </div>
       <div class="d-flex flex-row my-2">
-        <label class="input-group-text w-25 mx-1">Negócio :</label>
+        <label class="input-group-text w-50 mx-1">Negócio :</label>
         <input class="form-control w-100" type="text" id="business" placeholder="Negócio">
+      </div>
+      <div class="d-flex flex-row my-2">
+        <label class="input-group-text w-50 mx-1">Máximo de registros:</label>
+        <input class="form-control w-100" type="number" id="maxRecords" min="0" placeholder="Máximo de registros">
+      </div>
+      <div class="d-flex flex-row my-2">
+        <label class="input-group-text w-50 mx-1">Máximo de repetições:</label>
+        <input class="form-control w-100" type="number" id="maxIterations" min="0" placeholder="Máximo de repetições">
       </div>
       <div class="d-flex flex-row align-items-center justify-content-center my-4">
         <button class="btn btn-success w-50" id="search">Buscar</button>
