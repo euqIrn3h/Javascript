@@ -1,4 +1,5 @@
 const {By, Builder} = require("selenium-webdriver");
+const chrome = require('selenium-webdriver/chrome');
 const X_PATH = require('./xpaths');
 const file_utils = require('./utils/file');
 require("chromedriver");
@@ -16,6 +17,10 @@ async function getEnterprisesCsv(city, business, maxRecords, maxIterations){
  
     var searchString = city + " " + business;
 
+    //Options to initialize
+    // let options = new chrome.Options();
+    // options.addArguments('--headless');
+    // options.addArguments('--no-sandbox');
     //To wait for browser to build and launch properly
     let driver = await new Builder().forBrowser("chrome").build();
 
@@ -55,7 +60,11 @@ async function getEnterprisesCsv(city, business, maxRecords, maxIterations){
             await card.findElement(By.xpath(X_PATH.ENTERPRISE_NAME)).getText().then( name => newEnterprise.name = name);
             await card.findElement(By.xpath(X_PATH.ENTERPRISE_ADDRESS)).getText().then( address => newEnterprise.address = address);
             await card.findElement(By.xpath(X_PATH.ENTERPRISE_PHONE)).getText().then( phone => newEnterprise.phone = phone);
-            await card.findElement(By.xpath(X_PATH.ENTERPRISE_WEBSITE)).getAttribute('href').then( website => { website ? newEnterprise.website = website : "Sem website" });
+            try{
+                await card.findElement(By.xpath(X_PATH.ENTERPRISE_WEBSITE)).getAttribute('href').then( website => { website ? newEnterprise.website = website : "Sem website" });
+            }catch(error){
+                newEnterprise.website = "Sem website";
+            }
             enterprises.push(newEnterprise);
         }catch(e){
             errs.push(e);
@@ -66,7 +75,7 @@ async function getEnterprisesCsv(city, business, maxRecords, maxIterations){
 
     //It is always a safe practice to quit the browser after execution
     await driver.quit();
-
+    await file_utils.logErrors(errs);
     return await file_utils.jsonToCsv(enterprises);
 }
 

@@ -7,6 +7,7 @@ document.getElementById('btn-chooseDir').addEventListener('click', async () => {
         document.getElementById('chosenPath').innerHTML = `<p class="p-2 m-2 border border-2 rounded-3"> ${path}</p>`;
     } catch (error) {
         console.error('Erro ao selecionar diretório:', error);
+        alert('Erro ao selecionar diretório');
     }
 });
 
@@ -22,5 +23,6 @@ document.getElementById('search').addEventListener('click', async () => {
         window.ipc.ipcRenderer.invoke('fileUtils',{csv: csv, path: path + '/output.csv'});
     } catch (error) {
         console.error('Erro ao acionar o scrapper:', error);
+        alert('Erro ao acionar o scrapper');
     }
 });

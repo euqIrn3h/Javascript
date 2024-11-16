@@ -1,5 +1,5 @@
-
 const fs = require('node:fs');
+const path = require('node:path');
 
 async function writeFile(content, path){
     try{
@@ -36,7 +36,29 @@ async function jsonToCsv(jsonData) {
     return csv;
 }
 
+async function logErrors(errs) {
+    let content = errs.join('\n');
+    if(!content || content === '') return;
+    let logsPath = path.join(__dirname, '/../../../logs/');
+    let filename = logsPath + 'errors.txt';
+    writeFile(content, filename);
+}
+
+function getDate(){
+    const now = new Date();
+
+    // Obter as partes da data e hora
+    const hours = String(now.getHours()).padStart(2, '0'); // Hora com 2 dígitos
+    const minutes = String(now.getMinutes()).padStart(2, '0'); // Minutos com 2 dígitos
+    const day = String(now.getDate()).padStart(2, '0'); // Dia com 2 dígitos
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Mês (0-indexed, então somamos 1)
+    const year = now.getFullYear(); // Ano com 4 dígitos
+
+    return `${hours}:${minutes}-${day}-${month}-${year}`;
+}
+
 module.exports = { 
     writeFile,
-    jsonToCsv  
+    jsonToCsv,
+    logErrors
 };

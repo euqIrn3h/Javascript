@@ -26,10 +26,12 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "chromedriver": "^131.0.0",
     "electron-squirrel-startup": "^1.0.1",
+    "geckodriver": "^5.0.0",
     "jquery": "^3.7.1",
     "popper.js": "^1.16.1",
-    "chromedriver": "^129.0.4",
-    "selenium-webdriver": "^4.25.0"
+    "selenium-webdriver": "^4.26.0",
+    "webdriver-manager": "^12.1.9"
   }
 }
