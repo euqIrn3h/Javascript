@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class Default1697225991889 implements MigrationInterface {
-    name = 'Default1697225991889'
+export class Default1733185646110 implements MigrationInterface {
+    name = 'Default1733185646110'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`CREATE TABLE \`Users\` (\`id\` varchar(36) NOT NULL, \`name\` varchar(50) NOT NULL, \`email\` varchar(100) NOT NULL, \`password\` text NOT NULL, \`role_id\` varchar(36) NULL, UNIQUE INDEX \`REL_3bad667ed90ba9cb4c83411841\` (\`role_id\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`Users\` (\`id\` varchar(36) NOT NULL, \`name\` varchar(50) NOT NULL, \`email\` varchar(100) NOT NULL, \`password\` varchar(255) NOT NULL, \`role_id\` varchar(36) NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`Roles\` (\`id\` varchar(36) NOT NULL, \`role\` varchar(20) NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`Subjects\` (\`id\` varchar(36) NOT NULL, \`name\` text NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`Videos\` (\`id\` varchar(36) NOT NULL, \`title\` varchar(100) NOT NULL, \`url\` text NOT NULL, \`description\` text NULL, \`room_id\` varchar(36) NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
@@ -28,7 +28,6 @@ export class Default1697225991889 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE \`Videos\``);
         await queryRunner.query(`DROP TABLE \`Subjects\``);
         await queryRunner.query(`DROP TABLE \`Roles\``);
-        await queryRunner.query(`DROP INDEX \`REL_3bad667ed90ba9cb4c83411841\` ON \`Users\``);
         await queryRunner.query(`DROP TABLE \`Users\``);
     }
 

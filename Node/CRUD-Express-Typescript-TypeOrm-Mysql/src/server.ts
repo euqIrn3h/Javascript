@@ -5,7 +5,7 @@ import routes from './Routes';
 
 AppDataSource.initialize()
     .then(() => console.log("DB Inicializado!"))
-    .catch(() => console.log("DB não inicializado!"));
+    .catch((e) => console.log(e,"DB não inicializado!"));
 
 const app = express();
 const PORT = process.env.SERVER_PORT as number | undefined;
